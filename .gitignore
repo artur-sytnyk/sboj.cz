@@ -1,0 +1,15 @@
+# Ignore generated documentation
+/docs/
+
+# Ignore uploaded user/company images while keeping folder structure if needed
+/attachments/
+/assets/logos/
+/assets/profile_pics/
+
+# Ignore local environment configuration
+.env
+
+# Optional local PHP or editor temporary files
+*.log
+*.tmp
+*.cache
