@@ -35,12 +35,38 @@ function loadEnv($path = __DIR__ . '/.env')
 
 loadEnv();
 
-$dbHost = getenv('DB_HOST') ?: 'localhost';
-$dbName = getenv('DB_NAME') ?: '';
-$dbUser = getenv('DB_USER') ?: '';
-$dbPass = getenv('DB_PASS') ?: '';
+$dbDriver = strtolower(getenv('DB_DRIVER') ?: 'sqlite');
 
-$conn = new PDO("mysql:host={$dbHost};dbname={$dbName};charset=utf8mb4", $dbUser, $dbPass);
+if ($dbDriver === 'sqlite') {
+    $dbPath = getenv('DB_PATH') ?: 'database.sqlite';
+    $isAbsolutePath = preg_match('/^(?:[A-Za-z]:[\\\\\/]|[\\\\\/]{2}|\/)/', $dbPath) === 1;
+    if (!$isAbsolutePath) {
+        $dbPath = __DIR__ . DIRECTORY_SEPARATOR . $dbPath;
+    }
+
+    $databaseIsNew = !file_exists($dbPath);
+    $conn = new PDO('sqlite:' . $dbPath);
+    $conn->exec('PRAGMA foreign_keys = ON');
+
+    if ($databaseIsNew) {
+        $schema = file_get_contents(__DIR__ . '/database/schema.sql');
+        if ($schema === false) {
+            throw new RuntimeException('Unable to load the SQLite schema.');
+        }
+        $conn->exec($schema);
+    }
+} elseif ($dbDriver === 'mysql') {
+    $dbHost = getenv('DB_HOST') ?: 'localhost';
+    $dbName = getenv('DB_NAME') ?: '';
+    $dbUser = getenv('DB_USER') ?: '';
+    $dbPass = getenv('DB_PASS') ?: '';
+    $conn = new PDO("mysql:host={$dbHost};dbname={$dbName};charset=utf8mb4", $dbUser, $dbPass);
+} else {
+    throw new RuntimeException("Unsupported DB_DRIVER: {$dbDriver}");
+}
+
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_BOTH);
 
 // if ($_SESSION != null && !$_SESSION['returnUrl']) {
 //     $_SESSION['returnUrl'] = $_SERVER['REQUEST_URI'];

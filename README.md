@@ -22,18 +22,21 @@ A simple PHP/MySQL job portal web application for browsing and managing job offe
 ## Technologies
 
 - PHP
-- MySQL / PDO
+- SQLite or MySQL / PDO
 - HTML
 - CSS
 - JavaScript
 
 ## Running locally
 
-1. Place the project in a local PHP web server root (for example, Apache or Nginx with PHP enabled).
-2. Ensure PHP has PDO for MySQL and the GD extension enabled.
-3. Copy `.env.example` to `.env` and update the database credentials to match your local environment.
-4. Create the required tables for users, job postings, and applications. The repository does not include a database schema file.
-5. Open the site in a browser through the project root, typically via `index.php`.
+1. Ensure PHP has PDO for SQLite and the GD extension enabled.
+2. Copy `.env.example` to `.env`. The default configuration uses a local `database.sqlite` file.
+3. Start the PHP development server with `php -S localhost:8000`.
+4. Open `http://localhost:8000` in a browser.
+
+The SQLite database and its tables are created automatically on first request using `database/schema.sql`. It includes a demo employer (`demo-company` / `Demo123`) and two sample job postings. Delete `database.sqlite` to rebuild this initial local data.
+
+To use MySQL instead, set `DB_DRIVER=mysql` and provide the existing `DB_HOST`, `DB_NAME`, `DB_USER`, and `DB_PASS` values.
 
 ## Project context
 
