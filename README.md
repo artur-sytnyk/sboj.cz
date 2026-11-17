@@ -2,6 +2,9 @@
 
 A simple PHP/MySQL job portal web application for browsing and managing job offers, with user registration, login, profile pages, and job-application workflows.
 
+> [!NOTE]
+> This repository preserves a student project in approximately the state in which it was created. It is intended to demonstrate practical PHP and full-stack fundamentals, not to represent a production-ready recruitment platform.
+
 ## About the project
 
 - Built a self-contained PHP job board prototype with user registration and login.
@@ -18,6 +21,23 @@ A simple PHP/MySQL job portal web application for browsing and managing job offe
 - User profile editing and avatar upload
 - Role-based flows for job seekers and posting owners
 - Server-rendered PHP templates with shared database helper functions
+
+## Screenshots
+
+### Job search and listings
+
+![Filtered job listings with login and search controls](screenshots/job-search.png)
+
+### Employer view and applicants
+
+![Job detail displayed to its employer, including applicant profiles](screenshots/employer-job-applicants.png)
+
+### Applicant profile and registration
+
+<p align="center">
+  <img src="screenshots/applicant-profile.png" alt="Applicant profile with submitted applications" width="64%">
+  <img src="screenshots/registration-form.png" alt="User registration form" width="32%">
+</p>
 
 ## Technologies
 
@@ -40,4 +60,6 @@ To use MySQL instead, set `DB_DRIVER=mysql` and provide the existing `DB_HOST`, 
 
 ## Project context
 
-Created as a standalone PHP/MySQL web application prototype for browsing and managing job offers, with a focus on practical full-stack learning rather than a production-ready release.
+Created as a standalone PHP/MySQL web application prototype for browsing and managing job offers. The project reflects my student-stage understanding of PHP and focuses on practical full-stack learning: server-rendered pages, PDO database access, authentication sessions, CRUD workflows, relational data, file uploads, search, and pagination.
+
+The original architecture and implementation style are intentionally visible rather than being rewritten as a modern production system. This makes the repository a record of what I built and understood at that point in my learning.
