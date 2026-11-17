@@ -99,7 +99,7 @@ if ($data) {
         ?>
         <div class="pager flex">
             <?php
-            $prevhidden = $nexthidden = $prevPage = $nextPage = "";
+            $prevhidden = $nexthidden = $prevPage = $nextPage = $hidePage = "";
             if ($page <= 1) {
                 $prevhidden = "hidden";
             } else {

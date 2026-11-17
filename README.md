@@ -34,7 +34,7 @@ A simple PHP/MySQL job portal web application for browsing and managing job offe
 3. Start the PHP development server with `php -S localhost:8000`.
 4. Open `http://localhost:8000` in a browser.
 
-The SQLite database and its tables are created automatically on first request using `database/schema.sql`. It includes a demo employer (`demo-company` / `Demo123`) and two sample job postings. Delete `database.sqlite` to rebuild this initial local data.
+The SQLite database and its tables are created automatically on first request using `database/schema.sql` and `database/portfolio_seed.sql`. The portfolio dataset contains four employers, four applicants, and fifteen job postings. All demo accounts use the password `Demo123`; useful usernames include `demo-company`, `northstar-labs`, `greenline-studio`, `morava-digital`, and `john-doe`. Delete `database.sqlite` to rebuild this initial local data.
 
 To use MySQL instead, set `DB_DRIVER=mysql` and provide the existing `DB_HOST`, `DB_NAME`, `DB_USER`, and `DB_PASS` values.
 

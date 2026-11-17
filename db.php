@@ -54,6 +54,12 @@ if ($dbDriver === 'sqlite') {
             throw new RuntimeException('Unable to load the SQLite schema.');
         }
         $conn->exec($schema);
+
+        $portfolioSeed = file_get_contents(__DIR__ . '/database/portfolio_seed.sql');
+        if ($portfolioSeed === false) {
+            throw new RuntimeException('Unable to load the portfolio demo data.');
+        }
+        $conn->exec($portfolioSeed);
     }
 } elseif ($dbDriver === 'mysql') {
     $dbHost = getenv('DB_HOST') ?: 'localhost';
